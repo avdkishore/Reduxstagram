@@ -9,7 +9,7 @@ export function increment(index) {
 // add comments
 export function addComments(postId, author, comment) {
   return {
-    type: 'ADD_COMMENT'.
+    type: 'ADD_COMMENT',
     postId,
     author,
     comment
