@@ -6,6 +6,8 @@ export default class Comments extends Component {
     super(...arguments);
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleDeleteComment = this.handleDeleteComment.bind(this);
+    this.renderComments = this.renderComments.bind(this);
   }
 
   renderComments(comment, i) {
@@ -14,7 +16,7 @@ export default class Comments extends Component {
         <p>
           <strong>{comment.user}</strong>
           {comment.text}
-          <button className="remove-comment">&times;</button>
+          <button className="remove-comment" onClick={this.handleDeleteComment(i)}>&times;</button>
         </p>
       </div>
     );
@@ -28,6 +30,14 @@ export default class Comments extends Component {
 
     this.props.addComments(postId, author, comment);
     this.refs.commentForm.reset();
+  }
+
+  handleDeleteComment(i) {
+    return () => {
+      console.log('removing!!');
+      const { removeComments, params: { postId }} = this.props;
+      removeComments(postId, i);
+    }
   }
 
   render() {
