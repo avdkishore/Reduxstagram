@@ -1,15 +1,9 @@
 var path = require('path');
 var express = require('express');
 var webpack = require('webpack');
-var devConfig = require('./webpack.config.dev');
-var prodConfig = require('./webpack.config.prod');
-
-var isProduction = process.env.NODE_ENV === 'production';
-
+var config = require('./webpack.config.dev');
 var app = express();
-compiler = isProduction ? webpack(prodConfig) : webpack(devConfig);
 
-config = isProduction ? prodConfig : devConfig;
 
 app.use(require('webpack-dev-middleware')(compiler, {
   noInfo: true,
