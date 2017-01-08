@@ -4,7 +4,7 @@ var webpack = require('webpack');
 var devConfig = require('./webpack.config.dev');
 var prodConfig = require('./webpack.config.prod');
 
-var isProduction = process.node.NODE_ENV === 'production';
+var isProduction = process.env.NODE_ENV === 'production';
 
 var app = express();
 compiler = isProduction ? webpack(prodConfig) : webpack(devConfig);
