@@ -1,10 +1,13 @@
 var path = require('path');
 var express = require('express');
 var webpack = require('webpack');
-var config = require('./webpack.config.dev');
+var devConfig = require('./webpack.config.dev');
+var prodConfig = require('./webpack.config.prod');
+
+var isProduction = process.node.NODE_ENV === 'production';
 
 var app = express();
-var compiler = webpack(config);
+compiler = isProduction ? webpack(prodConfig) : webpack(devConfig);
 
 app.use(require('webpack-dev-middleware')(compiler, {
   noInfo: true,
@@ -23,5 +26,5 @@ app.listen(7770, 'localhost', function(err) {
     return;
   }
 
-  console.log('Listening at http://localhost:7770');
+  console.log('Listening at 7770');
 });
