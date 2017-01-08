@@ -9,6 +9,8 @@ var isProduction = process.env.NODE_ENV === 'production';
 var app = express();
 compiler = isProduction ? webpack(prodConfig) : webpack(devConfig);
 
+config = isProduction ? prodConfig : devConfig;
+
 app.use(require('webpack-dev-middleware')(compiler, {
   noInfo: true,
   publicPath: config.output.publicPath
